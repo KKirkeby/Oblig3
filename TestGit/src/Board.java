@@ -95,4 +95,10 @@
 	    }
 	}
 
-
+/**Demonstrasjon av GIT
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
