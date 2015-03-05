@@ -9,13 +9,18 @@ public class SnuTekst {
 		String str = input.nextLine();
 		System.out.println();
 		baklengs(str);
-	}
 		
-	    public static void baklengs (String tekst){
-	        if(tekst.length() ==0)
-	        	return;
+	}
 	
-	        System.out.println("Strengen skrevet ut bakleng: "+ (tekst.length() - 1));
+		static int count = 1;
+	    public static void baklengs (String tekst){
+	        if(tekst.length()==0)
+	        	return;
+	        else {
+	        	count++;
+	        }
+	
+	        System.out.println("Strengen skrevet ut bakleng: "+ (tekst.length() - 1) + count);
 	        baklengs(tekst.substring(0, tekst.length() - 1));
 }}
 

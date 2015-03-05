@@ -1,45 +1,65 @@
 import java.util.ArrayList;
+import java.util.Calendar;
 
 //En konstruktør som setter alle datamedlemmer til ønskede verdier  La klassen selv generere unike kortnummer (bruk en static variabel). 
 public abstract class Kort {
-	String navn;
-	String forNavn;
-	String etterNavn;
-	int pinKode;
-	boolean aksessKode;
-	static int kortNummer;
-	static int kNummer;
+	protected String navn;
+	protected int pinKode;
+	protected String forNavn;
+	protected String etterNavn;
+	protected boolean sperretKort = false;
+	protected int kortNummer;
+	protected static int sisteKortNummer;
 	
 	
-	public Kort(String navn,String forNavn, String etterNavn, int pinKode, boolean aksessKode, int kortNummer ){
+	public Kort(String navn, int pinKode){
 		this.navn = (forNavn + etterNavn);
+		this.pinKode = pinKode;
 		this.forNavn = forNavn;
 		this.etterNavn = etterNavn;
-		this.etterNavn = etterNavn;
-		this.pinKode = pinKode;
-		aksessKode = false;
-		kNummer = 1;
+		sisteKortNummer = 0;
 		bestemKortnummer();
 }
-	//La klassen selv generere unike kortnummer (bruk en static variabel).
-	static void bestemKortnummer() {
-		kNummer++;
-		kortNummer = kNummer;
+	
+	protected void setCalendar(Calendar calendar) {
+		this.calendar = calendar;
+	}
+	protected Calendar calendar = Calendar.getInstance();
+	
+	public void kortInfo() {
+		System.out.printf("Kort informasjon %1$s", getNavn());
+		System.out.println();
+		
+	}
+
+	//La klassen selv generere unike kortnummer (bruk en static (sisteKortnummer) variabel).
+	public void bestemKortnummer() {
+		sisteKortNummer++;
+		kortNummer = sisteKortNummer;
 }
 
 	//Metoden getNavn() som returnerer kortholders navn, returtype String
 	public String getNavn(){
 		return (navn);
 }
-	//En toString() metode som skriver ut alle kortets datamedlemmer, returtype String
-		public String toString() {
-			return ( " Navn på kortholder: " + this.navn +",," + "kortnummer:" + kortNummer +",,"
-					+ "Pinkode: " + this.pinKode + ",," + "sperret Kort: " + aksessKode);
-			
-			}
+
+	
+	protected int getPinKode() {
+		return pinKode;
+	}
 	//Metoden isSperret() som returnerer om kortet er sperret eller ikke, returtype boolean
-	public boolean isSperret(){
-		return false;
+	
+	protected boolean isSperretKort() {
+		return sperretKort;
 	}
 
+	abstract boolean checkPIN(int pin);
+	
 	}
+
+	
+		
+	
+	
+	
+	
